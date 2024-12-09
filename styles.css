@@ -1,0 +1,83 @@
+﻿/* General body styles */
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif; /* Apply Playfair Display */
+    background-color: #00A36C; /* Jade Green */
+    color: white;
+    display: flex;
+    flex-direction: column; /* Stack header and main content */
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Header styles */
+header {
+    width: 100%;
+    background-color: #333; /* Dark background for header */
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure header stays on top */
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* Animated box effect on hover */
+            nav ul li a::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background-color: white;
+                transition: width 0.4s ease, left 0.4s ease;
+            }
+
+            nav ul li a:hover::before {
+                width: 100%;
+                bottom: 0;
+                left: 0;
+            }
+
+/* Container styles for the main content */
+.container {
+    margin-top: 70px; /* To prevent content from being hidden behind the fixed header */
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Paragraph styles */
+p {
+    font-size: 1.5rem;
+    font-style: italic;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}

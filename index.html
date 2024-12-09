@@ -4,40 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ember Realm</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #00A36C; /* Jade Green */
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        p {
-            font-size: 1.5rem;
-            font-style: italic;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    <!-- Link to Playfair Display font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
 </head>
 <body>
+    <!-- JavaScript to include the header -->
+    <div id="header-container"></div> <!-- Placeholder for header -->
+
+    <!-- Main content with title and subtitle centered -->
     <div class="container">
         <h1>Ember Realm</h1>
         <p>This is Gaming</p>
     </div>
+    <script src="loadHeader.js"></script>
 </body>
 </html>
