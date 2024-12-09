@@ -15,7 +15,6 @@ body {
 /* Header styles */
 header {
     width: 100%;
-    background-color: #333; /* Dark background for header */
     padding: 10px 0;
     position: fixed;
     top: 0;
@@ -30,36 +29,37 @@ nav ul {
     padding: 0;
 }
 
-    nav ul li {
-        margin: 0 20px;
+nav ul li {
+    
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 5px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated box effect on hover */
+    nav ul li a::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.4s ease, left 0.4s ease;
     }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 5px 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-            /* Animated box effect on hover */
-            nav ul li a::before {
-                content: '';
-                position: absolute;
-                left: 50%;
-                bottom: 0;
-                width: 0;
-                height: 2px;
-                background-color: white;
-                transition: width 0.4s ease, left 0.4s ease;
-            }
-
-            nav ul li a:hover::before {
-                width: 100%;
-                bottom: 0;
-                left: 0;
-            }
+    nav ul li a:hover::before {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* Increase shadow intensity on hover */
+    }
 
 /* Container styles for the main content */
 .container {
