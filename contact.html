@@ -13,7 +13,7 @@
     <!-- Contact Form Section -->
     <section class="container">
         <h2>Contact Us</h2>
-        <form action="contact.php" method="POST">
+        <form id="contact-form">
             <label for="name">Your Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -28,7 +28,30 @@
 
             <button type="submit">Send Message</button>
         </form>
+
     </section>
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            var formData = new FormData(event.target);
+
+            // Send data to Google Apps Script Web App
+            fetch("https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert("Message sent successfully!");
+                })
+                .catch(error => {
+                    alert("There was an error sending your message. Please try again.");
+                });
+        });
+    </script>
+
 
     <!-- JavaScript to load the header -->
     <script src="loadHeader.js"></script>
