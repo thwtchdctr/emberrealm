@@ -37,18 +37,27 @@
             // Collect form data
             var formData = new FormData(event.target);
 
-            // Send data to Google Apps Script Web App
-            fetch("https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec", {
-                method: "POST",
-                body: formData
+            fetch('https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    'name': document.getElementById('name').value,
+                    'email': document.getElementById('email').value,
+                    'subject': document.getElementById('subject').value,
+                    'message': document.getElementById('message').value
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': '*'
+                }
             })
                 .then(response => response.text())
                 .then(data => {
-                    alert("Message sent successfully!");
+                    alert(response);
                 })
                 .catch(error => {
-                    alert("There was an error sending your message. Please try again.");
+                    alert('There was an error with your form submission: ' + error);
                 });
+
         });
     </script>
 
