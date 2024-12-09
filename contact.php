@@ -1,4 +1,33 @@
-﻿<!DOCTYPE html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $message = htmlspecialchars($_POST['message']);
+
+    // Email recipient (change this to your email)
+    $to = "thwtchdctr@gmail.com";
+    $headers = "From: " . $email . "\r\n" .
+               "Reply-To: " . $email . "\r\n" .
+               "X-Mailer: PHP/" . phpversion();
+
+    $mail_subject = "Contact Form: " . $subject;
+    $mail_body = "You have received a new message from your website contact form:\n\n" .
+                 "Name: " . $name . "\n" .
+                 "Email: " . $email . "\n" .
+                 "Subject: " . $subject . "\n\n" .
+                 "Message:\n" . $message;
+
+    // Sending email
+    if (mail($to, $mail_subject, $mail_body, $headers)) {
+        echo "<p>Your message has been sent successfully!</p>";
+    } else {
+        echo "<p>There was an error sending your message. Please try again later.</p>";
+    }
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
