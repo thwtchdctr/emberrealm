@@ -30,32 +30,34 @@
         document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission behavior
 
-            const name = document.getElementById('name').value || 'No Name Provided';
-            const email = document.getElementById('email').value || 'noemail@example.com';
-            const subject = document.getElementById('subject').value || 'No Subject';
-            const message = document.getElementById('message').value || 'No Message Provided';
-
+            // Prepare form data
             const formData = new URLSearchParams({
-                name: name,
-                email: email,
-                subject: subject,
-                message: message,
+                name: document.getElementById('name').value || 'No Name Provided',
+                email: document.getElementById('email').value || 'noemail@example.com',
+                subject: document.getElementById('subject').value || 'No Subject',
+                message: document.getElementById('message').value || 'No Message Provided',
             });
 
-            fetch(`https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?${formData.toString()}`, {
-                method: 'GET', // GET method
-                mode: 'no-cors',
+            // Make a fetch request to testDoGet
+            fetch('/testDoGet?' + formData.toString(), {
+                method: 'GET',
             })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then((data) => {
-                    alert(data); // Success message from Apps Script
+                    alert(data.message); // Success message from Apps Script
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     alert('There was an error submitting the form. Please try again.');
                 });
         });
-
     </script>
+
     <script src="loadHeader.js"></script>
 </body>
 </html>
