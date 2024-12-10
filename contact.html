@@ -41,14 +41,20 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             // Prepare form data
-            const formData = new URLSearchParams({
+            const formData = {
                 name: document.getElementById('name').value || 'No Name Provided',
                 email: document.getElementById('email').value || 'noemail@example.com',
                 subject: document.getElementById('subject').value || 'No Subject',
                 message: document.getElementById('message').value || 'No Message Provided',
-            });
+            };
 
-            emailjs.send("service_sa24c0d","template_o9tiuig",formData).then(alert("Message sent!"))
+            emailjs.send("service_sa24c0d", "template_o9tiuig", formData).then(
+                (response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                },
 
         });
     </script>
