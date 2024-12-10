@@ -30,11 +30,16 @@
         document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission behavior
 
-            const params = new URLSearchParams({
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value,
+            const name = document.getElementById('name').value || 'No Name Provided';
+            const email = document.getElementById('email').value || 'noemail@example.com';
+            const subject = document.getElementById('subject').value || 'No Subject';
+            const message = document.getElementById('message').value || 'No Message Provided';
+
+            const formData = new URLSearchParams({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
             });
 
             fetch(`https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?${params.toString()}`, {
