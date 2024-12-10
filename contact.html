@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "kH91p66K1skpSfwD2",
+            });
+        })();
+    </script>
 </head>
 <body>
     <div id="header-container"></div> <!-- Placeholder for header -->
@@ -38,30 +48,8 @@
                 message: document.getElementById('message').value || 'No Message Provided',
             });
 
-            // Make a fetch request to testDoGet
-            fetch('https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec', {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: document.getElementById('name').value || 'No Name Provided',
-                    email: document.getElementById('email').value || 'noemail@example.com',
-                    subject: document.getElementById('subject').value || 'No Subject',
-                    message: document.getElementById('message').value || 'No Message Provided',
-                }),
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    alert(data.message);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('There was an error submitting the form.');
-                });
+            emailjs.send("service_sa24c0d","template_o9tiuig",formData).then(alert("Message sent!"))
+
         });
     </script>
 
