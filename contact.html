@@ -39,10 +39,9 @@
             });
 
             // Make a fetch request to testDoGet
-            fetch('https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?' + formData.toString(), {
+            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?' + formData.toString(), {
                 redirect: 'follow',
-                method: 'GET',
-                mode: 'no-cors',
+                method: 'POST',
                 headers: {
                     "Content-Type": "text/plain;charset=utf-8",
                     "Access-Control-Allow-Origin": "https://www.emberrealm.net",
