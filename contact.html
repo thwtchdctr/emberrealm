@@ -41,7 +41,7 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             // Prepare form data
-            const formData = {
+            let formData = {
                 name: document.getElementById('name').value || 'No Name Provided',
                 email: document.getElementById('email').value || 'noemail@example.com',
                 subject: document.getElementById('subject').value || 'No Subject',
