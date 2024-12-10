@@ -39,6 +39,7 @@
 
             fetch(`https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?${params.toString()}`, {
                 method: 'GET', // GET method
+                mode: 'no-cors',
             })
                 .then((response) => {
                     if (!response.ok) {
