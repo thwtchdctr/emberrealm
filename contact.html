@@ -40,6 +40,7 @@
 
             // Make a fetch request to testDoGet
             fetch('https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?' + formData.toString(), {
+                redirect: "follow",
                 method: 'GET',
             })
                 .then((response) => {
