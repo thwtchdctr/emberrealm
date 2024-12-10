@@ -41,12 +41,6 @@
                 method: 'GET', // GET method
                 mode: 'no-cors',
             })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text(); // Since Apps Script returns text
-                })
                 .then((data) => {
                     alert(data); // Success message from Apps Script
                 })
