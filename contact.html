@@ -30,34 +30,31 @@
         document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission behavior
 
-            const formData = new URLSearchParams({
+            const params = new URLSearchParams({
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 subject: document.getElementById('subject').value,
                 message: document.getElementById('message').value,
             });
 
-            fetch('https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec', {
-                method: 'GET',
-                body: formData,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
+            fetch(`https://script.google.com/macros/s/AKfycbywyLVRlDBzemtQmN9EpstKIf2vgFyXxeg3z7ABtxJy68K1s0t9fG30M44LnzS8Pubw/exec?${params.toString()}`, {
+                method: 'GET', // GET method
             })
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-                    return response.json();
+                    return response.text(); // Since Apps Script returns text
                 })
                 .then((data) => {
-                    alert(data.message); // Success message from Apps Script
+                    alert(data); // Success message from Apps Script
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     alert('There was an error submitting the form. Please try again.');
                 });
         });
+
     </script>
     <script src="loadHeader.js"></script>
 </body>
