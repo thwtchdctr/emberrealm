@@ -187,6 +187,7 @@ form#contactForm {
     border: 2px solid white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: height 0.5s ease; /* Smoothly adjust height */
 }
 
 /* Image container */
@@ -195,7 +196,12 @@ form#contactForm {
     transition: transform 0.5s ease-in-out;
 }
 
-    
+    /* Images */
+    .carousel-images img {
+        flex-shrink: 0; /* Prevent images from shrinking */
+        width: 100%; /* Fit container width */
+        height: auto; /* Maintain aspect ratio */
+    }
 
 /* Buttons */
 .carousel-btn {

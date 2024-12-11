@@ -1,3 +1,4 @@
+//Text fade in
 document.addEventListener("DOMContentLoaded", () => {
     const headers = document.querySelectorAll("h1");
     const paragraphs = document.querySelectorAll("p");
@@ -14,7 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     paragraphs.forEach((paragraph) => observer.observe(paragraph));
 });
 
+
+//Image carousel
 document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.querySelector('.carousel');
     const carouselImages = document.querySelector('.carousel-images');
     const images = document.querySelectorAll('.carousel-images img');
     const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -23,7 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
 
     function updateCarousel() {
-        const imageWidth = images[0].clientWidth;
+        const currentImage = images[currentIndex];
+        const imageWidth = currentImage.clientWidth;
+
+        // Adjust carousel height to fit the current image
+        carousel.style.height = `${currentImage.clientHeight}px`;
+
+        // Update the transform property to display the current image
         carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
     }
 
@@ -37,5 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCarousel();
     });
 
-    window.addEventListener('resize', updateCarousel); // Adjust position on window resize
+    // Ensure the carousel adjusts on window resize
+    window.addEventListener('resize', updateCarousel);
+
+    // Initialize carousel size
+    updateCarousel();
 });
