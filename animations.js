@@ -25,17 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector('.carousel-btn.next');
 
     let currentIndex = 0;
-    const imageWidth = 560;
-
+    let currentTransform = 0;
     function updateCarousel() {
         const currentImage = images[currentIndex];
-        
+        currentTransform -= currentImage.imageWidth;
 
         // Adjust carousel height to fit the current image
         carousel.style.height = `${currentImage.clientHeight}px`;
 
         // Update the transform property to display the current image
-        carouselImages.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+        carouselImages.style.transform = `translateX(${currentTransform}px)`;
     }
 
     nextBtn.addEventListener('click', () => {
