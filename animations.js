@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
-        let currentImage = images[currentIndex];
+        currentImage = images[currentIndex];
         if (currentIndex > 0) {
             currentTransform -= currentImage.clientWidth;
         }
@@ -52,12 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to the last image
-        let currentImage = images[currentIndex];
-        if (currentIndex > 0) {
+        currentImage = images[currentIndex];
+        if (currentIndex < images.length) {
             currentTransform += currentImage.clientWidth;
         }
         else {
-            currentTransform = 0;
+            let maxTransform = 0;
+            for (let i = 0; i < images.length; i++) {
+                maxTransform += images[i].getBoundingClientRect().width;
+            }
+            currentTransform = maxTransform;
         }
         updateCarousel();
     });
