@@ -1,6 +1,8 @@
-//Text fade in
 document.addEventListener("DOMContentLoaded", () => {
-    const texts = document.querySelectorAll("h1") + document.querySelectorAll("h2") + document.querySelectorAll("p");
+    // Combine all NodeLists into one array
+    const texts = [...document.querySelectorAll("h1"),
+    ...document.querySelectorAll("h2"),
+    ...document.querySelectorAll("p")];
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -12,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     texts.forEach((text) => observer.observe(text));
 });
+
 
 
 //Image carousel
