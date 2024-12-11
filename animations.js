@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentImage = images[currentIndex];
 
         // Move the carousel right by the width of the current image
-        if (currentIndex < images.length - 1) {
+        if (currentIndex > 0) {
             currentTransform += currentImage.clientWidth;
         } else {
             // When we're at the first image, we need to calculate the maxTransform to go to the last image
