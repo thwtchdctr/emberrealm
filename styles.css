@@ -195,12 +195,7 @@ form#contactForm {
     transition: transform 0.5s ease-in-out;
 }
 
-    /* Images */
-    .carousel-images img {
-        width: 100%; /* Ensure each image takes up full width */
-        flex-shrink: 0; /* Prevent images from shrinking */
-        border: none;
-    }
+    
 
 /* Buttons */
 .carousel-btn {
