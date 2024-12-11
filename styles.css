@@ -69,13 +69,30 @@ h1 {
     font-size: 4rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Start hidden */
+    transform: translateY(20px); /* Slight downward position for the animation */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
 }
+
+    h1.fade-in {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move into place */
+    }
+
 
 /* Paragraph styles */
 p {
     font-size: 1.5rem;
     font-style: italic;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Start hidden */
+    transform: translateY(20px); /* Slight downward position for the animation */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+p.fade-in {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move into place */
 }
 
 /* Contact Form */
