@@ -180,7 +180,7 @@ form#contactForm {
 /* Carousel container */
 .carousel {
     position: relative;
-    width: 80%; /* Adjust as needed */
+    width: 80%; /* Adjust width as needed */
     max-width: 800px;
     margin: 50px auto;
     overflow: hidden;
@@ -188,6 +188,8 @@ form#contactForm {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: height 0.5s ease; /* Smoothly adjust height */
+    display: flex;
+    align-items: center; /* Center-align the images */
 }
 
 /* Image container */
@@ -199,8 +201,11 @@ form#contactForm {
     /* Images */
     .carousel-images img {
         flex-shrink: 0; /* Prevent images from shrinking */
-        width: 100%; /* Fit container width */
+        width: auto; /* Allow natural width */
         height: auto; /* Maintain aspect ratio */
+        max-width: 100%; /* Limit image size to fit the container */
+        max-height: 100vh; /* Prevent the image from exceeding viewport height */
+        margin: auto; /* Center image within the container */
     }
 
 /* Buttons */
