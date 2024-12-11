@@ -176,3 +176,57 @@ form#contactForm {
     color: white;
     display: none;
 }
+
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 80%; /* Adjust as needed */
+    max-width: 800px;
+    margin: 50px auto;
+    overflow: hidden;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Image container */
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+    /* Images */
+    .carousel-images img {
+        width: 100%; /* Ensure each image takes up full width */
+        flex-shrink: 0; /* Prevent images from shrinking */
+        border: none;
+    }
+
+/* Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
+
+    /* Button hover effect */
+    .carousel-btn:hover {
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+    }
