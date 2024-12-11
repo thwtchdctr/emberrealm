@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to the last image
         currentImage = images[currentIndex];
-        if (currentIndex < images.length) {
+        if (currentIndex < images.length - 1) {
             currentTransform += currentImage.clientWidth;
         }
         else {
