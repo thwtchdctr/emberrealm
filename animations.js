@@ -25,10 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector('.carousel-btn.next');
 
     let currentIndex = 0;
+    const imageWidth = currentImage.clientWidth;
 
     function updateCarousel() {
         const currentImage = images[currentIndex];
-        const imageWidth = currentImage.clientWidth;
+        
 
         // Adjust carousel height to fit the current image
         carousel.style.height = `${currentImage.clientHeight}px`;
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
         updateCarousel();
+        
     });
 
     prevBtn.addEventListener('click', () => {
