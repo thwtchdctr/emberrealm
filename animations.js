@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector('.carousel-btn.next');
 
     let currentIndex = 0;
-    const imageWidth = currentImage.clientWidth;
+    const imageWidth = 560;
 
     function updateCarousel() {
         const currentImage = images[currentIndex];
