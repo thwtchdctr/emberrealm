@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTransform = 0;
         }
         updateCarousel();
-        
+
     });
 
     prevBtn.addEventListener('click', () => {
@@ -69,3 +69,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCarousel();
     });
+});
