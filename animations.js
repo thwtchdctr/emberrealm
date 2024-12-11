@@ -1,8 +1,6 @@
 //Text fade in
 document.addEventListener("DOMContentLoaded", () => {
-    const texts = document.querySelectorAll("h1");
-    texts += document.querySelectorAll("h2");
-    texts += document.querySelectorAll("p");
+    const texts = document.querySelectorAll("h1") + document.querySelectorAll("h2") + document.querySelectorAll("p");
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
