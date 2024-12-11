@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentTransform = 0;
     function updateCarousel() {
         const currentImage = images[currentIndex];
-        currentTransform -= currentImage.imageWidth;
+        currentTransform -= currentImage.clientWidth;
 
         // Adjust carousel height to fit the current image
         carousel.style.height = `${currentImage.clientHeight}px`;
