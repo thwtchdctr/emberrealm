@@ -51,24 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to the last image
+        // Decrement the current index and wrap around to the last image
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
         currentImage = images[currentIndex];
+
+        // Move the carousel right by the width of the current image
         if (currentIndex < images.length - 1) {
             currentTransform += currentImage.clientWidth;
-        }
-        else {
+        } else {
+            // When we're at the first image, we need to calculate the maxTransform to go to the last image
             let maxTransform = 0;
             for (let i = 0; i < images.length; i++) {
                 maxTransform += images[i].getBoundingClientRect().width;
             }
-            currentTransform = maxTransform;
+            currentTransform = -maxTransform; // Move the carousel to the last image
         }
+
         updateCarousel();
     });
-
-    // Ensure the carousel adjusts on window resize
-    window.addEventListener('resize', updateCarousel);
-
-    // Initialize carousel size
-    updateCarousel();
-});
