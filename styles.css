@@ -23,7 +23,6 @@ header {
     z-index: 1000; /* Ensure header stays on top */
 }
 
-
 nav ul {
     list-style-type: none;
     display: flex;
