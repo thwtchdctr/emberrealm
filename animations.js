@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const carousel = document.querySelector('.carousel');
     const carouselImages = document.querySelector('.carousel-images');
     const images = document.querySelectorAll('.carousel-images img');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
+    //const prevBtn = document.querySelector('.carousel-btn.prev');
     const nextBtn = document.querySelector('.carousel-btn.next');
 
     let currentIndex = 0;
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    /**
     prevBtn.addEventListener('click', () => {
         // Decrement the current index and wrap around to the last image
         currentIndex = (currentIndex - 1 + images.length) % images.length;
@@ -69,4 +70,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCarousel();
     });
+        */
 });
