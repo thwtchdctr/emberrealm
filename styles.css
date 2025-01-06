@@ -24,14 +24,14 @@ header {
 }
 
 
-nav li {
+nav ul {
     list-style-type: none;
     display: flex;
     justify-content: center;
     padding: 0;
 }
 
-    nav li a {
+    nav ul li a {
         color: white;
         text-decoration: none;
         font-size: 1.2rem;
@@ -40,7 +40,7 @@ nav li {
         overflow: hidden;
     }
 
-        nav li a::before {
+        nav ul li a::before {
             content: '';
             position: absolute;
             left: 50%;
@@ -51,7 +51,7 @@ nav li {
             transition: width 0.4s ease, left 0.4s ease;
         }
 
-        nav li a:hover::before {
+        nav ul li a:hover::before {
             width: 100%;
             bottom: 0;
             left: 0;
