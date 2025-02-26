@@ -248,3 +248,10 @@ form#contactForm {
         background: rgba(255, 255, 255, 0.5);
         color: black;
     }
+
+img {
+    max-width: 200px;
+    max-height: 200px;
+    height: auto;
+    width: auto;
+}
