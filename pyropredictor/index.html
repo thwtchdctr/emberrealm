@@ -6,56 +6,55 @@
     <title>Pyro Predictor - Ember Realm</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css"> <!-- Link to your external CSS file -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </head>
 <body>
 <div id="header-container"></div>
-<h1>Run Pyro Predictor</h1>
-<button onclick="runPrediction()">Predict</button>
-<p id="result">Waiting...</p>
-<script>
-    let model;
-    let scalerStats;
-    const labels = ['Low', 'Moderate', 'High', 'Very High', 'Extreme'];
-
-    async function loadEverything() {
-        model = await tf.loadLayersModel('ppmodel/model.json');
-        const res = await fetch('ppmodel/scaler_stats.json');
-        scalerStats = await res.json();
-        console.log("Model and scaler loaded.");
-    }
-
-    function normalizeInput(inputArray, mins, maxs) {
-        return inputArray.map((val, i) => {
-            return (val - mins[i]) / (maxs[i] - mins[i]);
-        });
-    }
-
-    async function predictFireDanger(input) {
-        if (!model || !scalerStats) {
-            alert("Model or scaler not loaded yet!");
-            return;
-        }
-
-        const normInput = normalizeInput(input, scalerStats.mins, scalerStats.maxs);
-        const inputTensor = tf.tensor2d([normInput]); // shape [1, 9]
-        const prediction = model.predict(inputTensor);
-        const result = prediction.argMax(-1); // get index of highest probability
-        const predictedClass = (await result.data())[0]; // value 0-4
-        return predictedClass;
-    }
-
-    async function runPrediction() {
-        const exampleInput = [78, 45, 60, 0.1, 30, 20, 15, 800, 3];  // Example data
-        const predictedClass = await predictFireDanger(exampleInput);
-        if (predictedClass !== undefined) {
-            document.getElementById("result").innerText =
-                `Predicted Fire Danger Level: ${labels[predictedClass]}`;
-        }
-    }
-
-    window.onload = loadEverything;
-</script>
-    <script src="/loadHeader.js"></script>
-</body>
+    <h1>Run Pyro Predictor</h1>
+        <button onclick="runPrediction()">Predict</button>
+            <p id="result">Waiting...</p>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest">
+                let model;
+                let scalerStats;
+                const labels = ['Low', 'Moderate', 'High', 'Very High', 'Extreme'];
+            
+                async function loadEverything() {
+                    model = await tf.loadLayersModel('ppmodel/model.json');
+                    const res = await fetch('ppmodel/scaler_stats.json');
+                    scalerStats = await res.json();
+                    console.log("Model and scaler loaded.");
+                }
+            
+                function normalizeInput(inputArray, mins, maxs) {
+                    return inputArray.map((val, i) => {
+                        return (val - mins[i]) / (maxs[i] - mins[i]);
+                    });
+                }
+            
+                async function predictFireDanger(input) {
+                    if (!model || !scalerStats) {
+                        alert("Model or scaler not loaded yet!");
+                        return;
+                    }
+            
+                    const normInput = normalizeInput(input, scalerStats.mins, scalerStats.maxs);
+                    const inputTensor = tf.tensor2d([normInput]); // shape [1, 9]
+                    const prediction = model.predict(inputTensor);
+                    const result = prediction.argMax(-1); // get index of highest probability
+                    const predictedClass = (await result.data())[0]; // value 0-4
+                    return predictedClass;
+                }
+            
+                async function runPrediction() {
+                    const exampleInput = [78, 45, 60, 0.1, 30, 20, 15, 800, 3];  // Example data
+                    const predictedClass = await predictFireDanger(exampleInput);
+                    if (predictedClass !== undefined) {
+                        document.getElementById("result").innerText =
+                            `Predicted Fire Danger Level: ${labels[predictedClass]}`;
+                    }
+                }
+            
+                window.onload = loadEverything;
+            </script>
+        <script src="/loadHeader.js"></script>
+    </body>
 </html>
