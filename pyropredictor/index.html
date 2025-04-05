@@ -18,7 +18,9 @@
                 const labels = ['Low', 'Moderate', 'High', 'Very High', 'Extreme'];
             
                 async function loadEverything() {
+                    console.log("Loading model");
                     model = await tf.loadLayersModel('ppmodel/model.json');
+                    console.log("Model loaded, loading scaler");
                     const res = await fetch('ppmodel/scaler_stats.json');
                     scalerStats = await res.json();
                     console.log("Model and scaler loaded.");
@@ -56,5 +58,6 @@
                 window.onload = loadEverything;
             </script>
         <script src="/loadHeader.js"></script>
+        <script src="/animations.js"></script>
     </body>
 </html>
