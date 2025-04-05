@@ -3,56 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Ember Realm</title>
+    <title>Pyro Predictor - Ember Realm</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css"> <!-- Link to your external CSS file -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </head>
 <body>
 <div id="header-container"></div>
-<script>let model;
-let scalers;
-async function loadModel() {
-    model = await tf.loadLayersModel('ppmodel/model.json');
-    const res = await fetch('ppmodel/scaler_stats.json');
-    scalers = await res.json();
-}
+<h1>Run Pyro Predictor</h1>
+<button onclick="runPrediction()">Predict</button>
+<p id="result">Waiting...</p>
+<script>
+    let model;
+    let scalerStats;
+    const labels = ['Low', 'Moderate', 'High', 'Very High', 'Extreme'];
 
-window.onload = loadModel;
-
-function normalizeInput(inputArray, mins, maxs)
-{
-    return inputArray.map((val, i) => {
-        return (val-mins[i]) / (maxs[i] - mins[i])
-    });
-}
-
-async function predictFireDanger(input)
-{
-    if(!model || !scalers)
-    {
-        alert("model or scaler not loaded yet");
-        return;
+    async function loadEverything() {
+        model = await tf.loadLayersModel('ppmodel/model.json');
+        const res = await fetch('ppmodel/scaler_stats.json');
+        scalerStats = await res.json();
+        console.log("Model and scaler loaded.");
     }
 
-    const normInput = normalizeInput(input, scalers.mins, scalers.maxs);
-    const inputTensor = tf.tensor2d([normInput]);
-    const prediction = model.predict(inputTensor);
-    const result = prediction.argMax(-1);
+    function normalizeInput(inputArray, mins, maxs) {
+        return inputArray.map((val, i) => {
+            return (val - mins[i]) / (maxs[i] - mins[i]);
+        });
+    }
 
-    return (await result.data())[0];
-}
+    async function predictFireDanger(input) {
+        if (!model || !scalerStats) {
+            alert("Model or scaler not loaded yet!");
+            return;
+        }
 
-const exampleInput = [78, 45, 60, .1, 30, 20, 15, 800, 3];
+        const normInput = normalizeInput(input, scalerStats.mins, scalerStats.maxs);
+        const inputTensor = tf.tensor2d([normInput]); // shape [1, 9]
+        const prediction = model.predict(inputTensor);
+        const result = prediction.argMax(-1); // get index of highest probability
+        const predictedClass = (await result.data())[0]; // value 0-4
+        return predictedClass;
+    }
 
-setTimeout(async () => {
-    const result = await predictFireDanger(exampleInput);
-    const labels = ['Low', 'Moderate', 'High', 'Very High', 'Extreme'];
-    console.log("Predicted fire danger level:", labels[result]);
+    async function runPrediction() {
+        const exampleInput = [78, 45, 60, 0.1, 30, 20, 15, 800, 3];  // Example data
+        const predictedClass = await predictFireDanger(exampleInput);
+        if (predictedClass !== undefined) {
+            document.getElementById("result").innerText =
+                `Predicted Fire Danger Level: ${labels[predictedClass]}`;
+        }
+    }
 
-    //console.log("predicted fire danger level: ", result);  
-    
-}, 1000)</script>
+    window.onload = loadEverything;
+</script>
     <script src="/loadHeader.js"></script>
     <script src="/animations.js"></script>
 </body>
