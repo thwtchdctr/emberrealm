@@ -15,7 +15,7 @@
 <div id="header-container"></div>
     <h1>Run Pyro Predictor</h1>
         <button onclick="fetchWeatherAndPredict()">Predict</button>
-            <p id="result">Waiting...</p>
+            <p id="result">Waiting for prediction</p>
             <script>
                 let model;
                 let scalerStats;
@@ -71,8 +71,8 @@
                         const period = data.properties.periods[0]; // Get the current/next hour forecast
     
                         // Extract features (some conversion may be necessary)
-                        const tempC = (period.temperature);  // NOAA returns F
-                        const dewC = (period.dewpoint * 1.8 + 32);    // C to F
+                        const temp = (period.temperature);  // NOAA returns F
+                        const dewp = (period.dewpoint.value * 1.8 + 32);    // C to F
                         const humidity = period.relativeHumidity.value;   // %
                         const windSpeedStr = period.windSpeed;            // Example: "12 mph"
                         const windSpeed = parseFloat(windSpeedStr);       // Just the number
@@ -85,7 +85,7 @@
     
                         const season = getSeasonFromMonth(new Date().getMonth() + 1); // JS months are 0-based
     
-                        const features = [tempC, dewC, humidity, precip, precipcover, windSpeed, windSpeed, 0, season];
+                        const features = [temp, dewp, humidity, precip, precipcover, windSpeed, windSpeed, 0, season];
     
                         console.log("Weather features for prediction:", features);
     
