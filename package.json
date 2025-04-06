@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@tensorflow/tfjs": "^4.22.0"
+    "@tensorflow/tfjs": "^4.22.0",
+    "tfjs": "^0.6.0"
   }
 }
