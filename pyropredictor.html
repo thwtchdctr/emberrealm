@@ -27,9 +27,6 @@
                         fetch('/model.json')
                             .then(res => console.log('JSON fetch status:', res.status))
                             .catch(err => console.error('JSON fetch failed:', err));
-                        fetch('/model.json')
-                            .then(res => console.log('JSON fetch status:', res.status))
-                            .catch(err => console.error('JSON fetch failed:', err));
 
                         model = await tf.loadGraphModel('model.json');
                         console.log("Model loaded, loading scaler");
