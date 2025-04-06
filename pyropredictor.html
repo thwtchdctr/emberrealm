@@ -23,7 +23,7 @@
 
                 async function loadEverything() {
                     try {
-                        console.log("Loading model!");
+                        console.log("Loading model :)");
                         model = await tf.loadGraphModel('model.json');
                         console.log("Model loaded, loading scaler");
                         const res = await fetch('scaler_stats.json');
@@ -91,7 +91,7 @@
                         console.log("Weather features for prediction:", features);
     
                         //const normalized = normalizeInput(features);  // <-- you already have this in your script
-                        const predictedClass = predictFireDanger(features);                // Call your predictor function
+                        const predictedClass = await predictFireDanger(features);                // Call your predictor function
                         if (predictedClass !== undefined) {
                             document.getElementById("result").innerText =
                                 `Predicted Fire Danger Level: ${labels[predictedClass]}`;
