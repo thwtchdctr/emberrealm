@@ -23,9 +23,9 @@
                 async function loadEverything() {
                     try {
                         console.log("Loading model!");
-                        model = await tf.loadLayersModel('ppmodel/model.json');
+                        model = await tf.loadLayersModel('./ppmodel/model.json');
                         console.log("Model loaded, loading scaler");
-                        const res = await fetch('ppmodel/scaler_stats.json');
+                        const res = await fetch('./ppmodel/scaler_stats.json');
                         scalerStats = await res.json();
                         console.log("Model and scaler loaded.");
                     } catch (e) {
