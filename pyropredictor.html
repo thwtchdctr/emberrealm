@@ -27,13 +27,10 @@
                         fetch('/model.json')
                             .then(res => console.log('JSON fetch status:', res.status))
                             .catch(err => console.error('JSON fetch failed:', err));
-                        fetch('/model.json')
-                            .then(res => console.log('JSON fetch status:', res.status))
-                            .catch(err => console.error('JSON fetch failed:', err));
 
-                        model = await tf.loadLayersModel('/model.json');
+                        model = await tf.loadLayersModel('model.json');
                         console.log("Model loaded, loading scaler");
-                        const res = await fetch('/scaler_stats.json');
+                        const res = await fetch('scaler_stats.json');
                         scalerStats = await res.json();
                         console.log("Model and scaler loaded.");
                     } catch (e) {
