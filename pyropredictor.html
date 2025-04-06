@@ -72,7 +72,8 @@
     
                         // Extract features (some conversion may be necessary)
                         const temp = (period.temperature);  // NOAA returns F
-                        const dewp = (period.dewpoint.value * 1.8 + 32);    // C to F
+                        const dewpointC = period.dewpoint.value !== null ? period.dewpoint.value : 0;
+                        const dewp = (dewpointC * 1.8 + 32);    // C to F
                         const humidity = period.relativeHumidity.value;   // %
                         const windSpeedStr = period.windSpeed;            // Example: "12 mph"
                         const windSpeed = parseFloat(windSpeedStr);       // Just the number
