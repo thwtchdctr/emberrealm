@@ -23,6 +23,10 @@
                 async function loadEverything() {
                     try {
                         console.log("Loading model!");
+                        fetch('/group1-shard1of1.bin')
+                            .then(res => console.log('BIN fetch status:', res.status))
+                            .catch(err => console.error('BIN fetch failed:', err));
+
                         model = await tf.loadLayersModel('/model.json');
                         console.log("Model loaded, loading scaler");
                         const res = await fetch('/scaler_stats.json');
