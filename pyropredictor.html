@@ -24,10 +24,6 @@
                 async function loadEverything() {
                     try {
                         console.log("Loading model!");
-                        fetch('/model.json')
-                            .then(res => console.log('JSON fetch status:', res.status))
-                            .catch(err => console.error('JSON fetch failed:', err));
-
                         model = await tf.loadGraphModel('model.json');
                         console.log("Model loaded, loading scaler");
                         const res = await fetch('scaler_stats.json');
@@ -76,7 +72,7 @@
     
                         // Extract features (some conversion may be necessary)
                         const tempC = (period.temperature);  // NOAA returns F
-                        const dewC = (period.dewpoint * 9 / 5 + 32);    // C to F
+                        const dewC = (period.dewpoint * 1.8 + 32);    // C to F
                         const humidity = period.relativeHumidity.value;   // %
                         const windSpeedStr = period.windSpeed;            // Example: "12 mph"
                         const windSpeed = parseFloat(windSpeedStr);       // Just the number
@@ -94,7 +90,11 @@
                         console.log("Weather features for prediction:", features);
     
                         //const normalized = normalizeInput(features);  // <-- you already have this in your script
-                        predictFireDanger(features);                // Call your predictor function
+                        const predictedClass = predictFireDanger(features);                // Call your predictor function
+                        if (predictedClass !== undefined) {
+                            document.getElementById("result").innerText =
+                                `Predicted Fire Danger Level: ${labels[predictedClass]}`;
+                        }
     
                     } catch (err) {
                         console.error('Error fetching weather:', err);
