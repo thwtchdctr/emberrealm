@@ -23,6 +23,11 @@ header {
     z-index: 1000; /* Ensure header stays on top */
 }
 
+video {
+    width: 75%;
+    height: auto;
+}
+
 nav ul {
     list-style-type: none;
     display: flex;
