@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Ember Realm</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to your external CSS file -->
 
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
@@ -21,6 +21,7 @@
 <body>
     <div id="header-container"></div> <!-- Placeholder for header -->
     <h1 style="padding-top: 20px;">Contact Us</h1>
+    <p>Name, Email, and Subject lines are optional and will be filled with placeholder text if left empty.</p>
     <form id="contactForm">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -50,19 +51,20 @@
                 subject: document.getElementById('subject').value || 'No Subject',
                 message: document.getElementById('message').value || 'No Message Provided',
             };
-
-            emailjs.send("service_sa24c0d", "template_o9tiuig", formData).then(
-                (response) => {
-                    alert('Message sent successfully', response.status, response.text);
-                },
-                (error) => {
-                    alert('Message failed to send', error);
-                })
-
+            if(formData.message !== 'No Message Provided')
+            {
+                emailjs.send("service_sa24c0d", "template_o9tiuig", formData).then(
+                    (response) => {
+                        alert('Message sent successfully', response.status, response.text);
+                    },
+                    (error) => {
+                        alert('Message failed to send', error);
+                    })
+            }
         });
     </script>
 
-    <script src="loadHeader.js"></script>
-    <script src="animations.js"></script>
+    <script src="/loadHeader.js"></script>
+    <script src="/animations.js"></script>
 </body>
 </html>
