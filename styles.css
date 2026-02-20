@@ -2,7 +2,8 @@
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background-color: #00A36C; /* Jade Green */
+    /* background-color: #00A36C; /* Jade Green */
+    background-color: #141414; /* Dark background for better contrast */
     color: white;
     display: flex;
     flex-direction: column;
@@ -17,7 +18,7 @@ header {
     width: 100%;
     padding: 10px 0;
     position: fixed;
-    background-color: #00A36C;
+    background-color: #141414;
     top: 0;
     left: 0;
     z-index: 1000; /* Ensure header stays on top */
@@ -170,7 +171,7 @@ form#contactForm {
         font-weight: bold;
         text-transform: uppercase;
         background-color: white;
-        color: #00A36C;
+        color: #141414;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -179,7 +180,7 @@ form#contactForm {
 
         form#contactForm button:hover {
             background-color: #ffffffcc; /* Slightly transparent white */
-            color: #007856; /* Darker jade green */
+            color: #0c0c0c; /* Darker jade green */
         }
 
 /* Response Message Styling */
