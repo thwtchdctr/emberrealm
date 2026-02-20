@@ -18,7 +18,7 @@ header {
     width: 100%;
     padding: 10px 0;
     position: fixed;
-    background-color: #141414;
+    background-color: #101010;
     top: 0;
     left: 0;
     z-index: 1000; /* Ensure header stays on top */
